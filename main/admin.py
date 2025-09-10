@@ -192,10 +192,10 @@ custom_admin_site.register(BlogPost, BlogPostAdmin)
 custom_admin_site.register(ContactMessage, ContactMessageAdmin)
 
 # OPTIONAL: If you want to keep the default admin as well, 
-# comment out the registrations below
-# admin.site.register(Profile, ProfileAdmin)
-# admin.site.register(Project, ProjectAdmin)
-# admin.site.register(Skill, SkillAdmin)
-# admin.site.register(Testimonial, TestimonialAdmin)
-# admin.site.register(BlogPost, BlogPostAdmin)
-# admin.site.register(ContactMessage, ContactMessageAdmin)
+#comment out the registrations below
+admin.site.register(Profile, ProfileAdmin)
+admin.site.register(Project, ProjectAdmin)
+admin.site.register(Skill, SkillAdmin)
+admin.site.register(Testimonial, TestimonialAdmin)
+admin.site.register(BlogPost, BlogPostAdmin)
+admin.site.register(ContactMessage, ContactMessageAdmin)
