@@ -1,0 +1,155 @@
+/* Custom Admin CSS */
+:root {
+    --primary: #4e73df;
+    --secondary: #858796;
+    --success: #1cc88a;
+    --info: #36b9cc;
+    --warning: #f6c23e;
+    --danger: #e74a3b;
+    --light: #f8f9fc;
+    --dark: #5a5c69;
+}
+
+/* Dashboard Cards */
+.dashboard-card {
+    border: 0;
+    border-radius: 0.35rem;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+    margin-bottom: 1.5rem;
+}
+
+.dashboard-card .card-header {
+    background-color: #f8f9fc;
+    border-bottom: 1px solid #e3e6f0;
+    padding: 0.75rem 1.25rem;
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.dashboard-card .card-body {
+    padding: 1.25rem;
+}
+
+/* Stats Cards */
+.stat-card {
+    border-left: 0.25rem solid var(--primary);
+    border-radius: 0.35rem;
+    background: white;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+    margin-bottom: 1.5rem;
+}
+
+.stat-card.primary { border-left-color: var(--primary); }
+.stat-card.success { border-left-color: var(--success); }
+.stat-card.info { border-left-color: var(--info); }
+.stat-card.warning { border-left-color: var(--warning); }
+
+.stat-card .card-body {
+    padding: 1.25rem;
+}
+
+.stat-card .text-xs {
+    font-size: 0.7rem;
+}
+
+.stat-card .h5 {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+/* Custom Button Styles */
+.btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-primary:hover {
+    background-color: #2e59d9;
+    border-color: #2e59d9;
+}
+
+/* Table Improvements */
+table thead th {
+    background-color: #f8f9fc;
+    border-bottom: 2px solid #e3e6f0;
+    font-weight: 600;
+}
+
+table tbody tr:hover {
+    background-color: #f8f9fc;
+}
+
+/* Form Improvements */
+.form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+}
+
+/* Navigation Improvements */
+.sidebar {
+    background: linear-gradient(180deg, var(--primary) 0%, #224abe 100%);
+}
+
+.sidebar .nav-link {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.sidebar .nav-link:hover {
+    color: #fff;
+}
+
+.sidebar .nav-link.active {
+    color: #fff;
+    font-weight: 600;
+}
+
+/* Chart Containers */
+.chart-container {
+    position: relative;
+    height: 300px;
+}
+
+/* Custom Badges */
+.badge-primary { background-color: var(--primary); }
+.badge-success { background-color: var(--success); }
+.badge-info { background-color: var(--info); }
+.badge-warning { background-color: var(--warning); }
+.badge-danger { background-color: var(--danger); }
+
+/* Responsive Improvements */
+@media (max-width: 768px) {
+    .dashboard-card {
+        margin-bottom: 1rem;
+    }
+    
+    .stat-card {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Animation for dashboard elements */
+.dashboard-card, .stat-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.dashboard-card:hover, .stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 2rem 0 rgba(58, 59, 69, 0.2);
+}
+
+/* Custom login page styling */
+.login-box {
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+    padding: 2rem;
+}
+
+.login-logo {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.login-logo img {
+    height: 60px;
+}

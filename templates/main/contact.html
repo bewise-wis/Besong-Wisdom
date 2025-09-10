@@ -1,0 +1,236 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Contact - {% if profile %}{{ profile.name }}{% else %}My Portfolio{% endif %}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .contact-info-card {
+        transition: transform 0.3s;
+        border: none;
+        box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+    }
+    .contact-info-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0.5rem 2rem 0 rgba(58, 59, 69, 0.2);
+    }
+    .form-control:focus {
+        border-color: #4e73df;
+        box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+    }
+    .btn-primary {
+        background-color: #4e73df;
+        border-color: #4e73df;
+    }
+    .btn-primary:hover {
+        background-color: #2e59d9;
+        border-color: #2e59d9;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5 pt-4">
+    <div class="row">
+        <div class="col-12 text-center mb-5">
+            <h1 class="display-4">Get In Touch</h1>
+            <p class="lead text-muted">I'd love to hear from you. Send me a message!</p>
+        </div>
+    </div>
+
+    <!-- Display messages -->
+    {% if messages %}
+    <div class="row mb-4">
+        <div class="col-lg-8 mx-auto">
+            {% for message in messages %}
+            <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show" role="alert">
+                <i class="fas fa-{% if message.tags == 'success' %}check-circle{% else %}exclamation-circle{% endif %} me-2"></i>
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0"><i class="fas fa-envelope me-2"></i>Send Message</h4>
+                </div>
+                <div class="card-body p-4">
+                    <form method="POST" action="{% url 'contact' %}" id="contactForm">
+                        {% csrf_token %}
+                        <input type="hidden" name="timestamp" id="timestamp" value="">
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="id_name" class="form-label">Your Name *</label>
+                                {{ form.name }}
+                                {% if form.name.errors %}
+                                <div class="text-danger small mt-1">{{ form.name.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="id_email" class="form-label">Your Email *</label>
+                                {{ form.email }}
+                                {% if form.email.errors %}
+                                <div class="text-danger small mt-1">{{ form.email.errors }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="id_subject" class="form-label">Subject *</label>
+                            {{ form.subject }}
+                            {% if form.subject.errors %}
+                            <div class="text-danger small mt-1">{{ form.subject.errors }}</div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="id_message" class="form-label">Your Message *</label>
+                            {{ form.message }}
+                            {% if form.message.errors %}
+                            <div class="text-danger small mt-1">{{ form.message.errors }}</div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg py-2">
+                                <i class="fas fa-paper-plane me-2"></i>Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if profile %}
+    <div class="row mt-5">
+        <div class="col-12 text-center mb-4">
+            <h2 class="h3">Other Ways to Reach Me</h2>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card contact-info-card h-100 text-center">
+                <div class="card-body p-4">
+                    <div class="icon-circle bg-primary text-white mb-3 mx-auto">
+                        <i class="fas fa-envelope fa-2x"></i>
+                    </div>
+                    <h5 class="card-title">Email</h5>
+                    <p class="card-text">{{ profile.email }}</p>
+                    <a href="mailto:{{ profile.email }}" class="btn btn-outline-primary btn-sm">
+                        <i class="fas fa-envelope me-1"></i>Send Email
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        {% if profile.phone %}
+        <div class="col-md-4 mb-4">
+            <div class="card contact-info-card h-100 text-center">
+                <div class="card-body p-4">
+                    <div class="icon-circle bg-success text-white mb-3 mx-auto">
+                        <i class="fas fa-phone fa-2x"></i>
+                    </div>
+                    <h5 class="card-title">Phone</h5>
+                    <p class="card-text">{{ profile.phone }}</p>
+                    <a href="tel:{{ profile.phone }}" class="btn btn-outline-success btn-sm">
+                        <i class="fas fa-phone me-1"></i>Call Now
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        
+        <div class="col-md-4 mb-4">
+            <div class="card contact-info-card h-100 text-center">
+                <div class="card-body p-4">
+                    <div class="icon-circle bg-info text-white mb-3 mx-auto">
+                        <i class="fas fa-share-alt fa-2x"></i>
+                    </div>
+                    <h5 class="card-title">Social Media</h5>
+                    <div class="d-flex justify-content-center mt-3">
+                        {% if profile.github %}
+                        <a href="{{ profile.github }}" target="_blank" class="btn btn-dark btn-icon mx-1">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        {% endif %}
+                        {% if profile.linkedin %}
+                        <a href="{{ profile.linkedin }}" target="_blank" class="btn btn-primary btn-icon mx-1">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        {% endif %}
+                        {% if profile.twitter %}
+                        <a href="{{ profile.twitter }}" target="_blank" class="btn btn-info btn-icon mx-1">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Set the timestamp when the page loads
+        document.getElementById('timestamp').value = Date.now() / 1000;
+        
+        // Add form validation
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                let isValid = true;
+                const requiredFields = contactForm.querySelectorAll('[required]');
+                
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        isValid = false;
+                        field.classList.add('is-invalid');
+                    } else {
+                        field.classList.remove('is-invalid');
+                    }
+                });
+                
+                if (!isValid) {
+                    e.preventDefault();
+                    // Scroll to first error
+                    const firstError = contactForm.querySelector('.is-invalid');
+                    if (firstError) {
+                        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }
+            });
+        }
+        
+        // Add real-time validation
+        const inputs = document.querySelectorAll('input, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                if (this.hasAttribute('required') && !this.value.trim()) {
+                    this.classList.add('is-invalid');
+                } else {
+                    this.classList.remove('is-invalid');
+                }
+            });
+        });
+        
+        // Auto-close alerts after 5 seconds
+        const alerts = document.querySelectorAll('.alert');
+        alerts.forEach(alert => {
+            setTimeout(() => {
+                const bsAlert = new bootstrap.Alert(alert);
+                bsAlert.close();
+            }, 5000);
+        });
+    });
+</script>
+{% endblock %}
