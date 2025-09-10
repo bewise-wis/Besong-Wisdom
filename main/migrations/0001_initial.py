@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('taggit', '0006_rename_taggeditem_content_type_object_id_taggit_tagg_content_8fc721_idx'),
+        ('taggit', '__first__'),  # CHANGED: Use __first__ instead of specific migration
     ]
 
     operations = [
