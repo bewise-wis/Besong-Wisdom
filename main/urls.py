@@ -21,6 +21,3 @@ urlpatterns = [
     path('', include(router.urls)),
 ]
 
-# Add this at the end to serve media files during development
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
