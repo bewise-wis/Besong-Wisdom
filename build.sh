@@ -8,9 +8,13 @@ pip install -r requirements.txt
 # Apply database migrations
 python manage.py migrate
 
-# Create superuser if it doesn't exist (simple Python one-liner)
+# Create superuser with proper Django setup
 python -c "
 import os
+import django
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'portfolio_project.settings')
+django.setup()
+
 from django.contrib.auth import get_user_model
 User = get_user_model()
 username = os.environ.get('SUPERUSER_USERNAME', 'admin')
