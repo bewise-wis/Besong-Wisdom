@@ -109,12 +109,12 @@ WSGI_APPLICATION = 'portfolio_project.wsgi.application'
 # Database configuration for Render
 import dj_database_url
 
+# Database - Keep using SQLite (simple approach)
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL'),
-        conn_max_age=600,
-        ssl_require=not DEBUG
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 
