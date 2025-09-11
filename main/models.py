@@ -4,8 +4,8 @@ from taggit.managers import TaggableManager
 from django_summernote.fields import SummernoteTextField
 
 class Profile(models.Model):
-    name = models.CharField(max_length=100)
-    bio = models.TextField()
+    name = models.CharField(max_length=100, default="Besong Wisdom ")
+    bio = models.TextField(default="Web Developer & Designer, Creating beautiful, functional websites that deliver results!")
     about_me = models.TextField( blank=True)
     profile_picture = models.ImageField(upload_to='profiles/')
     about_picture = models.ImageField(upload_to='profiles/' , default='profiles/default_about.jpg')
