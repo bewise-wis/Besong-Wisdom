@@ -1,4 +1,4 @@
-# Add this at the top of your settings.py
+
 import os
 from pathlib import Path
 import dj_database_url
@@ -76,7 +76,6 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')
 SERVER_EMAIL = os.environ.get('SERVER_EMAIL')
 
-# For production, don't use console backend
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
@@ -89,4 +88,3 @@ if not DEBUG:
     SECURE_CONTENT_TYPE_NOSNIFF = True
     X_FRAME_OPTIONS = 'DENY'
 
-# ... rest of your existing settings ...
