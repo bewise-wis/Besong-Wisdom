@@ -173,10 +173,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'wisdombesong123@gmail.com'  # Your Gmail address
-EMAIL_HOST_PASSWORD = 'hoym qsvx xyjs hwnr'  # The app password you generated
-DEFAULT_FROM_EMAIL = 'wisdombesong123@gmail.com'  # Your Gmail address
-SERVER_EMAIL = 'wisdombesong123@gmail.com'  # Your Gmail address
+EMAIL_HOST_USER = 'wisdombesong123@gmail.com'  
+DEFAULT_FROM_EMAIL = 'wisdombesong123@gmail.com'  
+SERVER_EMAIL = 'wisdombesong123@gmail.com'  
 
 # For development/testing, you can use console backend to test without sending real emails
 if DEBUG:
