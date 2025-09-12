@@ -1,4 +1,4 @@
-# Add this at the top of your settings.py
+
 import os
 from pathlib import Path
 import dj_database_url
