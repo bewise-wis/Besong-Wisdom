@@ -16,7 +16,7 @@ if RENDER_EXTERNAL_HOSTNAME:
 
 # If ALLOWED_HOSTS is empty, add some defaults
 if not ALLOWED_HOSTS or ALLOWED_HOSTS == ['']:
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1','192.168.1.242']
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1','192.168.1.242', '192.168.1.126', 'BesongWisdom.pythonanywhere.com']
 
 
 # Application definition
