@@ -105,17 +105,13 @@ WSGI_APPLICATION = 'portfolio_project.wsgi.application'
 # Use PostgreSQL if DATABASE_URL exists, otherwise SQLite for development
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'portfolio_db',
+        'USER': 'postgres',
+        'PASSWORD': 'sumbevillage',  
+        'PORT': '5432',
     }
 }
-
-# Check for DATABASE_URL environment variable (set by Render)
-if os.environ.get('DATABASE_URL'):
-    DATABASES['default'] = dj_database_url.config(
-        default=os.environ.get('DATABASE_URL'),
-        conn_max_age=600
-    )
 
 
 # Password validation
