@@ -13,12 +13,16 @@ SECRET_KEY = config('SECRET_KEY', default='your-fallback-secret-key-for-developm
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 # Host configuration
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=lambda v: [s.strip() for s in v.split(',')])
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
 
 # Add Render's external hostname
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+
+# If ALLOWED_HOSTS is empty, add some defaults
+if not ALLOWED_HOSTS or ALLOWED_HOSTS == ['']:
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1','192.168.1.242', '192.168.1.126', 'BesongWisdom.pythonanywhere.com']
 
 # Application definition
 INSTALLED_APPS = [
