@@ -2,13 +2,13 @@
 # Exit on error
 set -o errexit
 
-# Install dependencies
+# Install dependencies including PostgreSQL
 pip install -r requirements.txt
 
 # Apply database migrations
 python manage.py migrate
 
-# Create superuser with proper Django setup
+# Create superuser (optional - only for initial setup)
 python -c "
 import os
 import django
